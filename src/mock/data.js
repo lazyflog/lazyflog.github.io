@@ -69,23 +69,18 @@ export const footerData = {
   networks: [
     {
       id: nanoid(),
-      name: 'twitter',
-      url: '',
+      name: 'facebook',
+      url: 'https://www.facebook.com/seon0305',
     },
     {
       id: nanoid(),
-      name: 'codepen',
-      url: '',
-    },
-    {
-      id: nanoid(),
-      name: 'linkedin',
-      url: '',
+      name: 'instagram',
+      url: 'https://www.instagram.com/yang_jong_seon/',
     },
     {
       id: nanoid(),
       name: 'github',
-      url: '',
+      url: 'https://github.com/lazyflog/',
     },
   ],
 };
