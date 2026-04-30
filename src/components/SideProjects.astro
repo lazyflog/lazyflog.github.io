@@ -1,5 +1,118 @@
 ---
+import { Code } from 'astro:components';
 import { sideProjectsData } from '../data/portfolio';
+
+const circuitBreakerCode = `export class CircuitBreaker {
+  private failures = 0;
+  private lastFailureTime = 0;
+  private state: 'CLOSED' | 'OPEN' | 'HALF_OPEN' = 'CLOSED';
+
+  constructor(
+    private readonly threshold = 5,
+    private readonly resetTime = 60_000,
+  ) {}
+
+  async execute<T>(fn: () => Promise<T>): Promise<T> {
+    if (this.state === 'OPEN') {
+      const elapsed = Date.now() - this.lastFailureTime;
+      if (elapsed >= this.resetTime) {
+        this.state = 'HALF_OPEN';
+      } else {
+        const retryIn = Math.ceil((this.resetTime - elapsed) / 1000);
+        throw new Error(\`Circuit OPEN — retry in \${retryIn}s\`);
+      }
+    }
+
+    try {
+      const result = await fn();
+      this.onSuccess();
+      return result;
+    } catch (error) {
+      this.onFailure();
+      throw error;
+    }
+  }
+
+  private onSuccess() {
+    this.failures = 0;
+    if (this.state === 'HALF_OPEN') {
+      this.state = 'CLOSED';
+      logger.info('Circuit CLOSED — service recovered');
+    }
+  }
+
+  private onFailure() {
+    this.failures++;
+    this.lastFailureTime = Date.now();
+    if (this.failures >= this.threshold) {
+      this.state = 'OPEN';
+      logger.error(\`Circuit OPENED after \${this.failures} failures\`);
+    }
+  }
+}`;
+
+const parallelAnalysisCode = `async function analyzeWithMCPServersParallel(
+  requiredServers: Set<string>,
+  files: FileInfo[],
+): Promise<Map<string, unknown>> {
+  const filesHash = cacheService.generatePRHash(files);
+
+  // 여러 MCP 서버를 병렬로 실행, 일부 실패해도 나머지 결과 활용
+  const promises = Array.from(requiredServers).map(async (serverName) => {
+    const cached = cacheService.getCachedMCPResult(serverName, filesHash);
+    if (cached) return [serverName, cached] as const;
+
+    try {
+      const result = await retryHandler.withRetry(
+        () => analyzeWithMCPServer(serverName, files),
+        { maxRetries: 2, backoff: 1000 },
+      );
+      cacheService.cacheMCPResult(serverName, filesHash, result);
+      return [serverName, result] as const;
+    } catch (error) {
+      return [serverName, { error: (error as Error).message }] as const;
+    }
+  });
+
+  const mcpResults = new Map(
+    (await Promise.allSettled(promises))
+      .filter((r): r is PromiseFulfilledResult<readonly [string, unknown]> =>
+        r.status === 'fulfilled',
+      )
+      .map((r) => r.value),
+  );
+
+  // 감지된 스택별로 Claude API 리뷰를 병렬 생성
+  const reviewPromises = detectedStacks.map((stack) =>
+    anthropicCircuitBreaker.execute(() =>
+      retryHandler.withRetry(() =>
+        anthropic.messages.create({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 4096,
+          messages: [{ role: 'user', content: buildPrompt(stack, mcpResults) }],
+        }),
+      ),
+    ),
+  );
+
+  const reviews = await Promise.allSettled(reviewPromises);
+  return buildReviewMap(reviews, detectedStacks);
+}`;
+
+const snippets = [
+  {
+    id: 'circuit-breaker',
+    label: 'Circuit Breaker',
+    description: 'API 장애 자동 차단 및 복구 패턴',
+    code: circuitBreakerCode,
+  },
+  {
+    id: 'parallel-analysis',
+    label: 'Parallel AI Analysis',
+    description: 'MCP 서버 병렬 분석 + Claude API 리뷰 생성',
+    code: parallelAnalysisCode,
+  },
+];
 ---
 
 <section id="side-projects" class="py-24 border-t border-gray-100 dark:border-gray-800">
@@ -10,27 +123,14 @@ import { sideProjectsData } from '../data/portfolio';
     </h2>
     <p class="text-gray-500 dark:text-gray-500 text-sm mb-12">개인적으로 만든 도구들입니다.</p>
 
-    <div class="space-y-4">
+    <div class="space-y-8">
       {sideProjectsData.map((project) => (
-        <article class="flex flex-col sm:flex-row sm:items-start gap-4 p-6 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl hover:border-teal-500/50 dark:hover:border-teal-400/50 transition-all duration-300">
-          <div class="flex-1">
+        <article class="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden">
+          <div class="p-6">
             <div class="flex flex-wrap items-center gap-3 mb-2">
               <h3 class="text-base font-bold text-gray-900 dark:text-white">{project.title}</h3>
-              {project.links?.repo && (
-                <a
-                  href={project.links.repo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-1 text-xs text-gray-500 dark:text-gray-500 hover:text-teal-500 dark:hover:text-teal-400 transition-colors"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
-                  </svg>
-                  GitHub
-                </a>
-              )}
             </div>
-            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-3">{project.description}</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-4">{project.description}</p>
             <div class="flex flex-wrap gap-1.5">
               {project.tags.map((tag) => (
                 <span class="px-2 py-0.5 text-xs bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded font-mono">
@@ -39,8 +139,73 @@ import { sideProjectsData } from '../data/portfolio';
               ))}
             </div>
           </div>
+
+          <!-- Code Showcase -->
+          <div class="border-t border-gray-200 dark:border-gray-800">
+            <!-- Tabs -->
+            <div class="flex gap-0 border-b border-gray-200 dark:border-gray-800 px-4 pt-3">
+              {snippets.map((snippet, i) => (
+                <button
+                  class="code-tab px-4 py-2 text-xs font-medium rounded-t-md transition-colors"
+                  data-tab={snippet.id}
+                  data-active={i === 0 ? 'true' : 'false'}
+                >
+                  {snippet.label}
+                </button>
+              ))}
+            </div>
+
+            <!-- Code Panels -->
+            {snippets.map((snippet, i) => (
+              <div
+                id={`panel-${snippet.id}`}
+                class="code-panel"
+                style={i !== 0 ? 'display:none' : ''}
+              >
+                <div class="flex items-center justify-between px-4 py-2 bg-gray-100 dark:bg-gray-800/60">
+                  <span class="text-xs text-gray-500 dark:text-gray-500 font-mono">{snippet.description}</span>
+                  <span class="text-xs text-gray-400 dark:text-gray-600 font-mono">TypeScript</span>
+                </div>
+                <div class="overflow-x-auto text-sm [&>pre]:!m-0 [&>pre]:!rounded-none [&>pre]:p-5 [&>pre]:!bg-gray-950">
+                  <Code code={snippet.code} lang="typescript" theme="github-dark" />
+                </div>
+              </div>
+            ))}
+          </div>
         </article>
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  .code-tab[data-active='true'] {
+    background-color: oklch(13% 0.028 261.692);
+    color: rgb(45, 212, 191);
+    border-bottom: 2px solid rgb(45, 212, 191);
+  }
+  .code-tab[data-active='false'] {
+    color: oklch(55.1% 0.027 264.364);
+  }
+  .code-tab[data-active='false']:hover {
+    color: oklch(70.7% 0.022 261.325);
+    background-color: oklch(21% 0.034 264.665 / 0.5);
+  }
+</style>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.code-tab');
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const targetId = tab.dataset.tab!;
+
+      tabs.forEach((t) => t.setAttribute('data-active', 'false'));
+      tab.setAttribute('data-active', 'true');
+
+      document.querySelectorAll<HTMLElement>('.code-panel').forEach((panel) => {
+        panel.style.display = panel.id === `panel-${targetId}` ? '' : 'none';
+      });
+    });
+  });
+</script>
