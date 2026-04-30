@@ -7,7 +7,7 @@ export const headData = {
 export const heroData = {
   name: '양종선',
   title: 'Frontend / Mobile Developer',
-  subtitle: 'EV 충전 플랫폼부터 AI 도구까지, 제품을 만듭니다.',
+  subtitle: '단순한 문제해결을 넘어 비즈니스 성공에 직접적으로 기여합니다.',
   cta: 'View Projects',
 };
 
@@ -47,10 +47,10 @@ export interface Project {
 export const projectsData: Project[] = [
   {
     id: 'everycharge',
-    title: 'EveryCharge',
-    subtitle: 'EV 충전 구독 플랫폼',
+    title: '모두의충전',
+    subtitle: 'EV 충전 및 차량구독 플랫폼',
     description:
-      '전기차 충전소 탐색, 구독 상품 관리, 결제까지 지원하는 EV 플랫폼입니다. 모바일 앱, 웹 서비스, 관리자 대시보드를 함께 개발했습니다. 네이버 지도 기반 충전소 탐색, 카카오/네이버/애플 소셜 로그인, 모두페이 결제 연동, Firebase 푸시 알림 등을 구현했습니다.',
+      '전기차 충전소 탐색, 차량 구독, 충전 결제를 통합 제공하는 EV 플랫폼입니다. 모바일 앱(20+ 스크린), 마케팅·이벤트 웹, 관리자 대시보드(45+ 페이지)를 개발했습니다. NFC·QR 충전 결제, 테슬라 API 연동, GreenTime 요금 최적화, 주행 리워드 및 포인트 게이미피케이션, ML Kit 카드 번호 인식, CodePush OTA 업데이트 등을 구현했습니다.',
     scope: ['모바일 앱', '웹', '어드민'],
     tags: ['React Native', 'Next.js', 'TypeScript', 'Zustand', 'React Query', 'Firebase', 'Naver Maps'],
     links: {
@@ -63,7 +63,7 @@ export const projectsData: Project[] = [
     title: 'BMW ChargeNow',
     subtitle: 'BMW OEM EV 충전 앱',
     description:
-      'BMW 전기차 오너를 위한 OEM 충전 관리 앱입니다. 충전소 탐색과 충전 세션 관리 기능을 제공하며, 오프라인 지원을 위해 암호화된 로컬 SQLite DB를 도입했습니다.',
+      'BMW 전기차 오너를 위한 OEM 충전 네트워크 앱입니다. 27개 스크린으로 구성되며, 네이버 지도 기반 충전소 탐색(5단계 클러스터링), PNC(Plug & Charge) 계약 관리, RF 카드 관리, SQLCipher 암호화 SQLite를 활용한 오프라인 충전소 데이터, MMKV 기반 보안 토큰 저장소를 구현했습니다.',
     scope: ['모바일 앱'],
     tags: ['React Native', 'TypeScript', 'Zustand', 'TanStack Query', 'SQLite', 'Firebase'],
     img: null,
