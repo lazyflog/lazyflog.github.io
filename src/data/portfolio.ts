@@ -74,7 +74,10 @@ export interface SideProject {
   id: string;
   title: string;
   description: string;
-  tags: string[];
+  coverage: {
+    label: string;
+    topics: string[];
+  }[];
   links?: {
     repo?: string;
     web?: string;
@@ -83,13 +86,22 @@ export interface SideProject {
 
 export const sideProjectsData: SideProject[] = [
   {
-    id: 'auto-code-reviewer',
-    title: 'Auto Code Reviewer',
+    id: 'code-conventions',
+    title: 'Code Conventions',
     description:
-      'Claude AI와 MCP(Model Context Protocol) 아키텍처를 활용한 GitHub PR 자동 코드리뷰 봇입니다. 멀티스택 지원, Circuit Breaker 패턴, 멀티레이어 캐싱으로 2-3배 빠른 리뷰 속도를 구현했습니다.',
-    tags: ['Node.js', 'TypeScript', 'Claude API', 'MCP', 'Docker', 'Google Cloud Run'],
+      'React Native와 Next.js/React 프로젝트에서 팀 전체가 일관된 코드를 작성할 수 있도록 정리한 컨벤션 문서입니다. 네이밍, 컴포넌트 구조, 상태관리, API 레이어, 테스트 전략까지 실제 프로덕트 개발 경험을 기반으로 작성했습니다.',
+    coverage: [
+      {
+        label: 'React Native',
+        topics: ['네이밍 규칙', '컴포넌트 구조', 'TypeScript 원칙', 'API 레이어 설계', '상태관리 (Zustand + React Query)', '스타일 시스템', '테스트 전략 (Jest / RNTL / MSW / Maestro)', 'Anti-patterns'],
+      },
+      {
+        label: 'Next.js / React',
+        topics: ['Server / Client Component', 'App Router 네비게이션', 'API 레이어 설계', '상태관리 (Zustand + React Query)', '스타일 시스템 (Tailwind / styled-components)', '에러 핸들링', 'TypeScript 원칙', 'Commit 컨벤션'],
+      },
+    ],
     links: {
-      repo: 'https://github.com/lazyflog/auto-code-reviewer',
+      repo: 'https://github.com/lazyflog/CodeConventions',
     },
   },
 ];
