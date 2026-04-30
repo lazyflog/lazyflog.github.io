@@ -1,0 +1,20 @@
+---
+import { projectsData } from '../data/portfolio';
+import ProjectCard from './ProjectCard.astro';
+---
+
+<section id="projects" class="py-24 border-t border-gray-100 dark:border-gray-800">
+  <div class="max-w-5xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+      Projects
+      <span class="block mt-1 w-12 h-1 bg-teal-500 rounded"></span>
+    </h2>
+    <p class="text-gray-500 dark:text-gray-500 text-sm mb-12">실제 서비스된 제품들입니다.</p>
+
+    <div class="grid sm:grid-cols-2 gap-6">
+      {projectsData.map((project) => (
+        <ProjectCard project={project} />
+      ))}
+    </div>
+  </div>
+</section>

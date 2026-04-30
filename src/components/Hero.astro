@@ -1,0 +1,41 @@
+---
+import { heroData } from '../data/portfolio';
+
+const { name, title, subtitle, cta } = heroData;
+---
+
+<section id="hero" class="min-h-screen flex items-center pt-16">
+  <div class="max-w-5xl mx-auto px-6 py-24 w-full">
+    <p class="text-teal-500 dark:text-teal-400 font-mono text-sm mb-4 tracking-widest uppercase">
+      Hello, I'm
+    </p>
+    <h1 class="text-5xl sm:text-7xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
+      {name}
+    </h1>
+    <h2 class="text-2xl sm:text-3xl font-semibold text-gray-500 dark:text-gray-400 mb-6">
+      {title}
+    </h2>
+    {subtitle && (
+      <p class="text-lg text-gray-600 dark:text-gray-400 max-w-xl mb-10 leading-relaxed">
+        {subtitle}
+      </p>
+    )}
+    <div class="flex flex-wrap gap-4">
+      <a
+        href="#projects"
+        class="inline-flex items-center gap-2 px-6 py-3 bg-teal-500 hover:bg-teal-600 text-white font-medium rounded-lg transition-colors"
+      >
+        {cta}
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </a>
+      <a
+        href="#contact"
+        class="inline-flex items-center gap-2 px-6 py-3 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-medium rounded-lg hover:border-teal-500 dark:hover:border-teal-400 hover:text-teal-500 dark:hover:text-teal-400 transition-colors"
+      >
+        Contact
+      </a>
+    </div>
+  </div>
+</section>

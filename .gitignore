@@ -54,12 +54,15 @@ typings/
 # dotenv environment variable files
 .env*
 
-# gatsby files
-.cache/
-public
+# Astro
+dist/
+.astro/
 
 # Mac files
 .DS_Store
+
+# IDE
+.idea/
 
 # Yarn
 yarn-error.log
