@@ -41,7 +41,7 @@ export interface Project {
     app?: string;
     repo?: string;
   };
-  img?: string | null;
+  images?: string[];
 }
 
 export const projectsData: Project[] = [
@@ -56,17 +56,31 @@ export const projectsData: Project[] = [
     links: {
       web: 'https://evmodu.kr',
     },
-    img: null,
+    images: [
+      '/images/modu/modu_1.png',
+      '/images/modu/modu_2.png',
+      '/images/modu/modu_3.png',
+      '/images/modu/modu_4.png',
+      '/images/modu/modu_5.jpg',
+      '/images/modu/modu_6.jpg',
+    ],
   },
   {
     id: 'chargenow',
-    title: 'BMW ChargeNow',
+    title: 'BMW Charging',
     subtitle: 'BMW OEM EV 충전 앱',
     description:
       'BMW 전기차 오너를 위한 OEM 충전 네트워크 앱 리뉴얼 프로젝트입니다. 대량의 충전소 데이터를 지도에 표시할 때 발생하는 성능 저하를 해결하기 위해 한국 지도를 100m 단위 셀로 분할하는 그리드 인덱싱 로직을 직접 설계해 지도 로딩 및 스크롤 성능을 개선했습니다. 외부 협력사와의 공동 개발 환경에서 문서화되지 않은 레거시 API 예외처리 로직도 직접 설계했습니다. PNC(Plug & Charge) 계약 관리, RF 카드 관리, SQLCipher 암호화 SQLite 기반 오프라인 충전소 데이터를 구현했습니다.',
     scope: ['모바일 앱'],
-    tags: ['React Native', 'TypeScript', 'Zustand', 'TanStack Query', 'SQLite', 'Firebase'],
-    img: null,
+    tags: ['React Native', 'TypeScript', 'Zustand', 'TanStack Query', 'SQLite', 'Firebase', 'Naver Maps'],
+    images: [
+      '/images/bmw/bmw_1.png',
+      '/images/bmw/bmw_2.png',
+      '/images/bmw/bmw_3.png',
+      '/images/bmw/bmw_4.png',
+      '/images/bmw/bmw_5.png',
+      '/images/bmw/bmw_6.png',
+    ],
   },
 ];
 

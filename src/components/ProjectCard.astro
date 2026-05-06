@@ -6,19 +6,59 @@ interface Props {
 }
 
 const { project } = Astro.props;
-const { title, subtitle, description, scope, tags, links, img } = project;
+const { title, subtitle, description, scope, tags, links, images } = project;
+const cardId = `carousel-${project.id}`;
 ---
 
 <article class="group bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden hover:border-teal-500/50 dark:hover:border-teal-400/50 transition-all duration-300">
-  <div class="aspect-video bg-gradient-to-br from-teal-500/10 to-teal-400/5 dark:from-teal-400/10 dark:to-teal-500/5 flex items-center justify-center">
-    {img ? (
-      <img src={img} alt={title} class="w-full h-full object-cover" />
-    ) : (
-      <div class="text-center space-y-2">
-        <div class="text-5xl font-bold text-teal-500/20 dark:text-teal-400/20 select-none">
-          {title.charAt(0)}
+  <div class="aspect-video bg-gradient-to-br from-teal-500/10 to-teal-400/5 dark:from-teal-400/10 dark:to-teal-500/5 relative overflow-hidden">
+    {images && images.length > 0 ? (
+      <div class="carousel w-full h-full" id={cardId}>
+        <div class="carousel-track flex h-full transition-transform duration-300 ease-in-out">
+          {images.map((src) => (
+            <div class="carousel-slide flex-shrink-0 w-full h-full">
+              <img src={src} alt={title} class="w-full h-full object-cover" loading="lazy" />
+            </div>
+          ))}
         </div>
-        <p class="text-xs text-gray-400 dark:text-gray-600">이미지 준비 중</p>
+        {images.length > 1 && (
+          <>
+            <button
+              class="carousel-prev absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-black/40 text-white hover:bg-black/60 transition-colors"
+              aria-label="이전 이미지"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              class="carousel-next absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-black/40 text-white hover:bg-black/60 transition-colors"
+              aria-label="다음 이미지"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+            <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
+              {images.map((_, i) => (
+                <button
+                  class="carousel-dot w-1.5 h-1.5 rounded-full bg-white/50 transition-colors"
+                  data-index={i}
+                  aria-label={`이미지 ${i + 1}`}
+                />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    ) : (
+      <div class="w-full h-full flex items-center justify-center">
+        <div class="text-center space-y-2">
+          <div class="text-5xl font-bold text-teal-500/20 dark:text-teal-400/20 select-none">
+            {title.charAt(0)}
+          </div>
+          <p class="text-xs text-gray-400 dark:text-gray-600">이미지 준비 중</p>
+        </div>
       </div>
     )}
   </div>
@@ -76,3 +116,28 @@ const { title, subtitle, description, scope, tags, links, img } = project;
     )}
   </div>
 </article>
+
+<script>
+  document.querySelectorAll('.carousel').forEach((carousel) => {
+    const track = carousel.querySelector('.carousel-track') as HTMLElement;
+    const slides = carousel.querySelectorAll('.carousel-slide');
+    const dots = carousel.querySelectorAll('.carousel-dot');
+    const total = slides.length;
+    let current = 0;
+
+    function goTo(index: number) {
+      current = (index + total) % total;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('bg-white', i === current);
+        dot.classList.toggle('bg-white/50', i !== current);
+      });
+    }
+
+    goTo(0);
+
+    carousel.querySelector('.carousel-prev')?.addEventListener('click', () => goTo(current - 1));
+    carousel.querySelector('.carousel-next')?.addEventListener('click', () => goTo(current + 1));
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+  });
+</script>
