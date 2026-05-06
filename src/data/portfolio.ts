@@ -52,7 +52,7 @@ export const projectsData: Project[] = [
     description:
       '10만+ 사용자 규모의 EV 충전·차량구독 플랫폼으로, 초기 합류부터 정식 런칭까지 충전소 탐색·검색, 모두페이 결제(NFC·QR), 마이카·테슬라 API 연동, 대리충전 등 주요 도메인 기능을 직접 설계·개발했습니다. 이후 웹·앱으로 분리 운영되던 이벤트 페이지를 웹뷰로 통합해 관리 포인트를 줄였으며, 모바일 앱(20+ 스크린), Next.js 이벤트 웹, 어드민 대시보드(45+ 페이지)를 함께 개발했습니다.',
     scope: ['모바일 앱', '웹', '어드민'],
-    tags: ['React Native', 'Next.js', 'TypeScript', 'Zustand', 'React Query', 'Firebase', 'Naver Maps'],
+    tags: ['React Native', 'Next.js', 'TypeScript', 'Zustand', 'TanStack Query', 'Firebase', 'Naver Maps'],
     links: {
       web: 'https://evmodu.kr',
     },
