@@ -13,8 +13,8 @@ export const heroData = {
 
 export const aboutData = {
   bio: [
-    '모바일과 웹 양쪽에서 제품을 만들어온 프론트엔드 개발자입니다.',
-    'React Native로 앱을 개발하고, Next.js로 웹 서비스를 구축하며, 팀의 개발 효율을 높이는 도구도 직접 만듭니다.',
+    '지난 5년간 React Native 기반 모바일 앱 개발을 중심으로, 0에서 10만 명 이상의 사용자로 성장한 서비스의 전체 주기를 경험한 프론트엔드 개발자입니다.',
+    '초기 MVP 구축부터 성능 최적화, 운영 자동화까지 제품의 전 생애주기에서 문제를 정의하고 해결해 왔습니다. 기능 개발을 넘어 서비스 안정성, 운영 효율성, 사용자 경험이라는 관점에서 주도적으로 가치를 만들어 온 경험이 있습니다.',
   ],
   skills: [
     'React Native',
@@ -50,7 +50,7 @@ export const projectsData: Project[] = [
     title: '모두의충전',
     subtitle: 'EV 충전 및 차량구독 플랫폼',
     description:
-      '전기차 충전소 탐색, 차량 구독, 충전 결제를 통합 제공하는 EV 플랫폼입니다. 모바일 앱(20+ 스크린), 마케팅·이벤트 웹, 관리자 대시보드(45+ 페이지)를 개발했습니다. NFC·QR 충전 결제, 테슬라 API 연동, GreenTime 요금 최적화, 주행 리워드 및 포인트 게이미피케이션, ML Kit 카드 번호 인식, CodePush OTA 업데이트 등을 구현했습니다.',
+      '10만+ 사용자 규모의 EV 충전·차량구독 플랫폼으로, 초기 합류부터 정식 런칭까지 충전소 탐색·검색, 모두페이 결제(NFC·QR), 마이카·테슬라 API 연동, 대리충전 등 주요 도메인 기능을 직접 설계·개발했습니다. 이후 웹·앱으로 분리 운영되던 이벤트 페이지를 웹뷰로 통합해 관리 포인트를 줄였으며, 모바일 앱(20+ 스크린), Next.js 이벤트 웹, 어드민 대시보드(45+ 페이지)를 함께 개발했습니다.',
     scope: ['모바일 앱', '웹', '어드민'],
     tags: ['React Native', 'Next.js', 'TypeScript', 'Zustand', 'React Query', 'Firebase', 'Naver Maps'],
     links: {
@@ -63,7 +63,7 @@ export const projectsData: Project[] = [
     title: 'BMW ChargeNow',
     subtitle: 'BMW OEM EV 충전 앱',
     description:
-      'BMW 전기차 오너를 위한 OEM 충전 네트워크 앱입니다. 27개 스크린으로 구성되며, 네이버 지도 기반 충전소 탐색(5단계 클러스터링), PNC(Plug & Charge) 계약 관리, RF 카드 관리, SQLCipher 암호화 SQLite를 활용한 오프라인 충전소 데이터, MMKV 기반 보안 토큰 저장소를 구현했습니다.',
+      'BMW 전기차 오너를 위한 OEM 충전 네트워크 앱 리뉴얼 프로젝트입니다. 대량의 충전소 데이터를 지도에 표시할 때 발생하는 성능 저하를 해결하기 위해 한국 지도를 100m 단위 셀로 분할하는 그리드 인덱싱 로직을 직접 설계해 지도 로딩 및 스크롤 성능을 개선했습니다. 외부 협력사와의 공동 개발 환경에서 문서화되지 않은 레거시 API 예외처리 로직도 직접 설계했습니다. PNC(Plug & Charge) 계약 관리, RF 카드 관리, SQLCipher 암호화 SQLite 기반 오프라인 충전소 데이터를 구현했습니다.',
     scope: ['모바일 앱'],
     tags: ['React Native', 'TypeScript', 'Zustand', 'TanStack Query', 'SQLite', 'Firebase'],
     img: null,
