@@ -35,5 +35,78 @@ const { title, description, lang = 'ko' } = Astro.props;
   </head>
   <body class="bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100 transition-colors duration-300">
     <slot />
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/85" role="dialog" aria-modal="true">
+      <button id="lightbox-close" class="absolute top-4 right-4 text-white/70 hover:text-white transition-colors" aria-label="닫기">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      <button id="lightbox-prev" class="absolute left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors" aria-label="이전 이미지">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <img id="lightbox-img" src="" alt="" class="max-w-[90vw] max-h-[90vh] object-contain rounded-lg select-none" />
+      <button id="lightbox-next" class="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors" aria-label="다음 이미지">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+      <div id="lightbox-counter" class="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/60 text-sm tabular-nums"></div>
+    </div>
+
+    <script is:inline>
+      (function () {
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
+        const lbCounter = document.getElementById('lightbox-counter');
+        let _images = [];
+        let _index = 0;
+
+        function show() {
+          lbImg.src = _images[_index];
+          lbCounter.textContent = _images.length > 1 ? `${_index + 1} / ${_images.length}` : '';
+          document.getElementById('lightbox-prev').style.display = _images.length > 1 ? '' : 'none';
+          document.getElementById('lightbox-next').style.display = _images.length > 1 ? '' : 'none';
+        }
+
+        function open(images, index) {
+          _images = images;
+          _index = index;
+          show();
+          lb.classList.remove('hidden');
+          lb.classList.add('flex');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function close() {
+          lb.classList.add('hidden');
+          lb.classList.remove('flex');
+          document.body.style.overflow = '';
+          lbImg.src = '';
+        }
+
+        function navigate(delta) {
+          _index = (_index + delta + _images.length) % _images.length;
+          show();
+        }
+
+        window.openLightbox = open;
+
+        document.getElementById('lightbox-close').addEventListener('click', close);
+        document.getElementById('lightbox-prev').addEventListener('click', function (e) { e.stopPropagation(); navigate(-1); });
+        document.getElementById('lightbox-next').addEventListener('click', function (e) { e.stopPropagation(); navigate(1); });
+        lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+        document.addEventListener('keydown', function (e) {
+          if (!lb.classList.contains('hidden')) {
+            if (e.key === 'Escape') close();
+            if (e.key === 'ArrowLeft') navigate(-1);
+            if (e.key === 'ArrowRight') navigate(1);
+          }
+        });
+      })();
+    </script>
   </body>
 </html>

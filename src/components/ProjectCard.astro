@@ -15,9 +15,16 @@ const cardId = `carousel-${project.id}`;
     {images && images.length > 0 ? (
       <div class="carousel w-full h-full" id={cardId}>
         <div class="carousel-track flex h-full transition-transform duration-300 ease-in-out">
-          {images.map((src) => (
+          {images.map((src, i) => (
             <div class="carousel-slide flex-shrink-0 w-full h-full">
-              <img src={src} alt={title} class="w-full h-full object-cover" loading="lazy" />
+              <img
+                src={src}
+                alt={title}
+                class="w-full h-full object-cover cursor-zoom-in"
+                loading="lazy"
+                data-images={JSON.stringify(images)}
+                data-index={i}
+              />
             </div>
           ))}
         </div>
@@ -139,5 +146,13 @@ const cardId = `carousel-${project.id}`;
     carousel.querySelector('.carousel-prev')?.addEventListener('click', () => goTo(current - 1));
     carousel.querySelector('.carousel-next')?.addEventListener('click', () => goTo(current + 1));
     dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+    carousel.querySelectorAll('img[data-images]').forEach((img) => {
+      img.addEventListener('click', () => {
+        const images = JSON.parse((img as HTMLElement).dataset.images!);
+        const index = parseInt((img as HTMLElement).dataset.index!, 10);
+        (window as any).openLightbox(images, index);
+      });
+    });
   });
 </script>
