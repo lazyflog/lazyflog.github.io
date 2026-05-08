@@ -150,7 +150,7 @@ export const sideProjectsData: SideProject[] = [
   },
   {
     id: 'hanpet-auto-poster',
-    title: '한펫 자동 포스팅 봇',
+    title: '반려동물 커뮤니티 게시글 자동 포스팅 봇',
     description:
       '반려동물 커뮤니티 한펫(hanpet.co.kr)에 자연스러운 게시글을 자동으로 생성·업로드하는 봇입니다. 96개의 페르소나 프로필(나이·지역·직업·반려동물·말투)을 기반으로 Claude API가 맥락에 맞는 글을 생성하며, 자유게시판·앨범·펫상식 3개 게시판에 하루 9개씩 자동 포스팅합니다. 트렌드 수집부터 이미지 선택·업로드까지 전 과정을 자동화했습니다.',
     coverage: [

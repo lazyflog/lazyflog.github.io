@@ -1,0 +1,76 @@
+---
+const persona = {
+  name: '우준희',
+  age: 31,
+  region: '경기 수원시',
+  job: 'IT 개발자',
+  pet: '골든리트리버 4살 (맥스)',
+  style: '유머러스하고 솔직한 말투, 정보 전달 중심, 아재 개그 가끔',
+};
+
+const post = {
+  board: '자유게시판',
+  title: '맥스한테 스마트 급수기 달아줬더니 본인이 더 신기한가봄 ㅋㅋ',
+  lines: [
+    '어제 해외직구로 주문했던 IoT 급수기 드디어 도착했습니다 ㅎㅎ',
+    '설치하면서 앱 연동하느라 한 시간 날렸는데 결국 맥스는 그냥 물 마시고 가더라고요...',
+    '근데 제가 카메라로 들여다보니까 맥스가 앱 알림 소리 들릴 때마다 급수기 앞에서 고개 갸웃거리는 거 포착 ㅋㅋ',
+    '솔직히 급수기보다 맥스 반응 모니터링하려고 산 것 같기도 해요 😂',
+    '혹시 스마트 급수기 써보신 분들 있나요? 필터 교체 주기가 좀 짧은 것 같아서 다른 제품도 궁금하네요~',
+  ],
+};
+---
+
+<div class="mt-5">
+  <p class="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3">
+    Example
+  </p>
+
+  <div class="grid sm:grid-cols-2 gap-3">
+
+    <!-- Persona Card -->
+    <div class="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700/60 rounded-xl p-4">
+      <p class="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3">Persona</p>
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-full bg-teal-500/15 dark:bg-teal-400/10 flex items-center justify-center text-base shrink-0">
+          🧑‍💻
+        </div>
+        <div>
+          <p class="text-sm font-bold text-gray-900 dark:text-white">{persona.name}</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">{persona.age}세 · {persona.region}</p>
+        </div>
+      </div>
+      <dl class="space-y-2">
+        <div class="flex gap-2">
+          <dt class="text-xs text-gray-400 dark:text-gray-500 w-8 shrink-0 mt-0.5">직업</dt>
+          <dd class="text-xs text-gray-700 dark:text-gray-300">{persona.job}</dd>
+        </div>
+        <div class="flex gap-2">
+          <dt class="text-xs text-gray-400 dark:text-gray-500 w-8 shrink-0 mt-0.5">반려동물</dt>
+          <dd class="text-xs text-gray-700 dark:text-gray-300">{persona.pet}</dd>
+        </div>
+        <div class="flex gap-2">
+          <dt class="text-xs text-gray-400 dark:text-gray-500 w-8 shrink-0 mt-0.5">말투</dt>
+          <dd class="text-xs text-gray-500 dark:text-gray-400 italic leading-relaxed">{persona.style}</dd>
+        </div>
+      </dl>
+    </div>
+
+    <!-- Generated Post -->
+    <div class="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700/60 rounded-xl p-4">
+      <p class="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3">Generated Post</p>
+      <div class="space-y-2.5">
+        <span class="inline-block text-xs font-medium text-teal-600 dark:text-teal-400 bg-teal-50 dark:bg-teal-400/10 px-2 py-0.5 rounded">
+          {post.board}
+        </span>
+        <p class="text-sm font-semibold text-gray-900 dark:text-white leading-snug">{post.title}</p>
+        <div class="space-y-1.5 pt-0.5">
+          {post.lines.map((line) => (
+            <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">{line}</p>
+          ))}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

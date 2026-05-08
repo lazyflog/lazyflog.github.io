@@ -1,6 +1,7 @@
 ---
 import { sideProjectsData } from '../data/portfolio';
 import GamdomHighlights from './GamdomHighlights.astro';
+import HanpetDemo from './HanpetDemo.astro';
 ---
 
 <section id="side-projects" class="py-24 border-t border-gray-100 dark:border-gray-800">
@@ -52,6 +53,7 @@ import GamdomHighlights from './GamdomHighlights.astro';
             </div>
 
             {project.id === 'gamdom-clone' && <GamdomHighlights />}
+            {project.id === 'hanpet-auto-poster' && <HanpetDemo />}
           </div>
         </article>
       ))}
