@@ -6,6 +6,7 @@ const persona = {
   job: 'IT 개발자',
   pet: '골든리트리버 4살 (맥스)',
   style: '유머러스하고 솔직한 말투, 정보 전달 중심, 아재 개그 가끔',
+  professional_persona: '우준희 씨는 경기 수원시 소재 IT 기업에서 근무하는 31세 개발자로, 백엔드 및 IoT 연동 시스템 개발에 강점을 가지고 있다. 코드 품질과 효율성을 중시하며, 반려동물 관련 스마트 기기에 관심이 많아 업무 외 시간에도 펫테크 분야 기술 트렌드를 꾸준히 탐색한다. 팀 내에서는 유머러스한 분위기 메이커로 통하지만, 기술적인 문제 앞에서는 날카롭고 논리적인 면모를 드러낸다.',
 };
 
 const post = {
@@ -42,16 +43,20 @@ const post = {
       </div>
       <dl class="space-y-2">
         <div class="flex gap-2">
-          <dt class="text-xs text-gray-400 dark:text-gray-500 w-8 shrink-0 mt-0.5">직업</dt>
+          <dt class="text-xs text-gray-400 dark:text-gray-500 w-11 shrink-0">직업</dt>
           <dd class="text-xs text-gray-700 dark:text-gray-300">{persona.job}</dd>
         </div>
         <div class="flex gap-2">
-          <dt class="text-xs text-gray-400 dark:text-gray-500 w-8 shrink-0 mt-0.5">반려동물</dt>
+          <dt class="text-xs text-gray-400 dark:text-gray-500 w-11 shrink-0">반려동물</dt>
           <dd class="text-xs text-gray-700 dark:text-gray-300">{persona.pet}</dd>
         </div>
         <div class="flex gap-2">
-          <dt class="text-xs text-gray-400 dark:text-gray-500 w-8 shrink-0 mt-0.5">말투</dt>
+          <dt class="text-xs text-gray-400 dark:text-gray-500 w-11 shrink-0 mt-0.5">말투</dt>
           <dd class="text-xs text-gray-500 dark:text-gray-400 italic leading-relaxed">{persona.style}</dd>
+        </div>
+        <div class="flex gap-2">
+          <dt class="text-xs text-gray-400 dark:text-gray-500 w-11 shrink-0 mt-0.5">구체적인 인적사항</dt>
+          <dd class="text-xs text-gray-500 dark:text-gray-400 italic leading-relaxed">{persona.professional_persona}</dd>
         </div>
       </dl>
     </div>
