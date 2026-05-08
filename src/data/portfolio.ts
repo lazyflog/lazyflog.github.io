@@ -92,6 +92,10 @@ export interface SideProject {
     label: string;
     topics: string[];
   }[];
+  highlights?: {
+    name: string;
+    description: string;
+  }[];
   links?: {
     repo?: string;
     web?: string;
@@ -99,6 +103,51 @@ export interface SideProject {
 }
 
 export const sideProjectsData: SideProject[] = [
+  {
+    id: 'gamdom-clone',
+    title: '게임 플랫폼 UI 클론',
+    description:
+      '해외 게임 플랫폼의 UI/UX를 Next.js 15 + React 19 스택으로 클론 구현한 프로젝트입니다. 외부 컴포넌트 라이브러리 없이 직접 구현한 인터랙티브 컴포넌트들을 중심으로, 다국어 라우팅과 게이밍 특화 디자인 시스템 구축에 집중했습니다.',
+    coverage: [
+      {
+        label: 'Tech Stack',
+        topics: [
+          'Next.js 15 App Router + React 19',
+          'TypeScript + Tailwind CSS 4',
+          'Zustand + TanStack Query',
+          'next-intl 다국어(ko/en) locale 라우팅',
+          'Turbopack 개발 빌드',
+        ],
+      },
+      {
+        label: 'Design System',
+        topics: [
+          'CSS 변수 자동 생성 스크립트 (colors.ts → CSS vars)',
+          '게이밍 네온 테마 + 다크 최적화',
+          '시맨틱 컬러 토큰 체계',
+          'IcoMoon 커스텀 아이콘 시스템',
+          '반응형 브레이크포인트 설계',
+        ],
+      },
+    ],
+    highlights: [
+      {
+        name: 'TabSelector',
+        description:
+          '선택 탭에 슬라이딩 배경이 따라오는 탭바. 라이브러리 없이 offsetLeft/offsetWidth로 직접 위치 계산. default / neon 두 가지 variant 지원.',
+      },
+      {
+        name: 'BottomSheetModal',
+        description:
+          'Context + Portal 기반 Compound Component. Trigger · Overlay · Content · Header 등 Radix UI 방식의 API를 직접 구현. 애니메이션 완료 후 unmount 처리.',
+      },
+      {
+        name: 'SlideSelector',
+        description:
+          '수평 스크롤 카테고리 바. 양끝 도달 여부에 따라 그라디언트 페이드 + 화살표 버튼 조건부 표시. 모바일에서 스크롤 다운 시 자동 hide.',
+      },
+    ],
+  },
   {
     id: 'hanpet-auto-poster',
     title: '한펫 자동 포스팅 봇',
