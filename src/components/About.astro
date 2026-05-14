@@ -1,7 +1,7 @@
 ---
 import { aboutData } from '../data/portfolio';
 
-const { bio, skills } = aboutData;
+const { bio, bioEn, skills } = aboutData;
 ---
 
 <section id="about" class="py-24 border-t border-gray-100 dark:border-gray-800">
@@ -12,12 +12,21 @@ const { bio, skills } = aboutData;
     </h2>
 
     <div class="grid sm:grid-cols-2 gap-12 items-start">
-      <div class="space-y-4">
-        {bio.map((paragraph) => (
-          <p class="text-gray-600 dark:text-gray-400 leading-relaxed text-base">
-            {paragraph}
-          </p>
-        ))}
+      <div>
+        <div class="lang-ko space-y-4">
+          {bio.map((paragraph) => (
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed text-base">
+              {paragraph}
+            </p>
+          ))}
+        </div>
+        <div class="lang-en space-y-4">
+          {bioEn.map((paragraph) => (
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed text-base">
+              {paragraph}
+            </p>
+          ))}
+        </div>
       </div>
 
       <div>

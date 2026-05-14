@@ -1,7 +1,7 @@
 ---
 import { heroData } from '../data/portfolio';
 
-const { name, title, subtitle, cta } = heroData;
+const { name, title, subtitle, subtitleEn, cta } = heroData;
 ---
 
 <section id="hero" class="min-h-screen flex items-center pt-16">
@@ -19,8 +19,13 @@ const { name, title, subtitle, cta } = heroData;
           {title}
         </h2>
         {subtitle && (
-          <p class="text-lg text-gray-600 dark:text-gray-400 max-w-xl mb-10 leading-relaxed">
+          <p class="lang-ko text-lg text-gray-600 dark:text-gray-400 max-w-xl mb-10 leading-relaxed">
             {subtitle}
+          </p>
+        )}
+        {subtitleEn && (
+          <p class="lang-en text-lg text-gray-600 dark:text-gray-400 max-w-xl mb-10 leading-relaxed">
+            {subtitleEn}
           </p>
         )}
         <div class="flex flex-wrap gap-4">

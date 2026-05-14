@@ -30,6 +30,8 @@ const { title, description, lang = 'ko' } = Astro.props;
         if (stored === 'dark' || (!stored && prefersDark)) {
           document.documentElement.classList.add('dark');
         }
+        const storedLang = localStorage.getItem('lang');
+        if (storedLang === 'en') document.documentElement.classList.add('en');
       })();
     </script>
   </head>

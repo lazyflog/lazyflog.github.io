@@ -10,14 +10,21 @@ import HanpetDemo from './HanpetDemo.astro';
       Side Projects
       <span class="block mt-1 w-12 h-1 bg-teal-500 rounded"></span>
     </h2>
-    <p class="text-gray-500 dark:text-gray-500 text-sm mb-12">개인적으로 만든 것들입니다.</p>
+    <p class="lang-ko text-gray-500 dark:text-gray-500 text-sm mb-12">개인적으로 만든 것들입니다.</p>
+    <p class="lang-en text-gray-500 dark:text-gray-500 text-sm mb-12">Personal projects I built on my own.</p>
 
     <div class="space-y-6">
       {sideProjectsData.map((project) => (
         <article class="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden">
           <div class="p-6">
             <div class="flex flex-wrap items-center gap-3 mb-3">
-              <h3 class="text-lg font-bold text-gray-900 dark:text-white">{project.title}</h3>
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white">
+                <span class="lang-ko">{project.title}</span>
+                {project.titleEn
+                  ? <span class="lang-en">{project.titleEn}</span>
+                  : <span class="lang-en">{project.title}</span>
+                }
+              </h3>
               {project.links?.repo && (
                 <a
                   href={project.links.repo}
@@ -32,11 +39,29 @@ import HanpetDemo from './HanpetDemo.astro';
                 </a>
               )}
             </div>
-            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-6">{project.description}</p>
+            <p class="lang-ko text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-6">{project.description}</p>
+            {project.descriptionEn && (
+              <p class="lang-en text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-6">{project.descriptionEn}</p>
+            )}
 
             <div class="grid sm:grid-cols-2 gap-4">
               {project.coverage.map((group) => (
-                <div class="bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700/50 rounded-lg p-4">
+                <div class="lang-ko bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700/50 rounded-lg p-4">
+                  <p class="text-xs font-semibold text-teal-500 dark:text-teal-400 uppercase tracking-wider mb-3">
+                    {group.label}
+                  </p>
+                  <ul class="space-y-1.5">
+                    {group.topics.map((topic) => (
+                      <li class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                        <span class="w-1 h-1 rounded-full bg-teal-500/60 dark:bg-teal-400/60 shrink-0"></span>
+                        {topic}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+              {project.coverageEn && project.coverageEn.map((group) => (
+                <div class="lang-en bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700/50 rounded-lg p-4">
                   <p class="text-xs font-semibold text-teal-500 dark:text-teal-400 uppercase tracking-wider mb-3">
                     {group.label}
                   </p>
