@@ -1,6 +1,7 @@
 ---
 const persona = {
   name: '우준희',
+  nameEn: 'Woo Junho',
   age: 31,
   region: '경기 수원시',
   regionEn: 'Suwon, Gyeonggi',
@@ -51,7 +52,10 @@ const post = {
           🧑‍💻
         </div>
         <div>
-          <p class="text-sm font-bold text-gray-900 dark:text-white">{persona.name}</p>
+          <p class="text-sm font-bold text-gray-900 dark:text-white">
+            <span class="lang-ko">{persona.name}</span>
+            <span class="lang-en">{persona.nameEn}</span>
+          </p>
           <p class="lang-ko text-xs text-gray-500 dark:text-gray-400">{persona.age}세 · {persona.region}</p>
           <p class="lang-en text-xs text-gray-500 dark:text-gray-400">{persona.age} y.o. · {persona.regionEn}</p>
         </div>
