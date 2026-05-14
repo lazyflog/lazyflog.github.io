@@ -6,7 +6,7 @@ export const headData = {
 
 export const heroData = {
   name: '양종선',
-  nameEn: 'Yang JongSeon',
+  nameEn: 'Yang Jong-seon',
   title: 'Frontend / Mobile Developer',
   subtitle: '단순한 문제해결을 넘어 비즈니스 성공에 직접적으로 기여합니다.',
   subtitleEn: 'Going beyond simple problem-solving to directly contribute to business success.',
