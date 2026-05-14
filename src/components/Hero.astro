@@ -1,7 +1,7 @@
 ---
 import { heroData } from '../data/portfolio';
 
-const { name, title, subtitle, subtitleEn, cta } = heroData;
+const { name, nameEn, title, subtitle, subtitleEn, cta } = heroData;
 ---
 
 <section id="hero" class="min-h-screen flex items-center pt-16">
@@ -13,7 +13,8 @@ const { name, title, subtitle, subtitleEn, cta } = heroData;
           WELCOME
         </p>
         <h1 class="text-5xl sm:text-7xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
-          {name}
+          <span class="lang-ko">{name}</span>
+          <span class="lang-en">{nameEn}</span>
         </h1>
         <h2 class="text-2xl sm:text-3xl font-semibold text-gray-500 dark:text-gray-400 mb-6">
           {title}

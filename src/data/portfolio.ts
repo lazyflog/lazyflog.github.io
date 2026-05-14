@@ -6,6 +6,7 @@ export const headData = {
 
 export const heroData = {
   name: '양종선',
+  nameEn: 'Yang JongSeon',
   title: 'Frontend / Mobile Developer',
   subtitle: '단순한 문제해결을 넘어 비즈니스 성공에 직접적으로 기여합니다.',
   subtitleEn: 'Going beyond simple problem-solving to directly contribute to business success.',
@@ -128,6 +129,7 @@ export const sideProjectsData: SideProject[] = [
   {
     id: 'gamdom-clone',
     title: '게임 플랫폼 UI 클론',
+    titleEn: 'Game Platform UI Clone',
     descriptionEn:
       'A clone implementation of an overseas gaming platform\'s UI/UX built with a Next.js 15 + React 19 stack. Focused on building interactive components from scratch without external component libraries, along with a multi-locale routing system and a gaming-specific design system.',
     description:
