@@ -47,8 +47,9 @@ export interface Project {
   tags: string[];
   links?: {
     web?: string;
-    app?: string;
     repo?: string;
+    playStore?: string;
+    appStore?: string;
   };
   images?: string[];
 }
@@ -99,6 +100,31 @@ export const projectsData: Project[] = [
       '/images/bmw/bmw_6.png',
     ],
   },
+  {
+    id: 'flirting',
+    title: '플러팅',
+    subtitle: '동네·관심사 기반 소개팅 앱',
+    subtitleEn: 'Neighborhood- & Interest-Based Dating App',
+    description:
+      '내가 정한 거리 안에서 관심사가 맞는 사람을 연결하는 소개팅 앱으로, 한국·베트남·인도네시아 등에서 서비스 중입니다(Google Play 5,000+ 다운로드). 운영 중인 서비스에 합류해 React Native(Expo) 앱, Node.js 백엔드, 어드민을 함께 개발했습니다. 해외 사용자를 위한 이메일 OTP 인증과 6개 언어 현지화, 좋아요·매칭 적립부터 출금까지 이어지는 캐시 리워드 시스템을 앱·서버·어드민 전 구간에 걸쳐 구현했고, 홈 추천 덱 로직을 개선했으며, Claude API로 신규 가입 프로필 심사를 자동화했습니다.',
+    descriptionEn:
+      'A dating app that connects people with shared interests within a distance they choose, live in Korea, Vietnam, Indonesia and more (5,000+ downloads on Google Play). I joined the running service and worked across the React Native (Expo) app, Node.js backend, and admin. Built email OTP authentication and 6-language localization for overseas users, a cash reward system spanning app, server, and admin — from like/match rewards through withdrawal — improved the home recommendation deck logic, and automated new-profile review with the Claude API.',
+    scope: ['모바일 앱', '백엔드', '어드민'],
+    scopeEn: ['Mobile App', 'Backend', 'Admin'],
+    tags: ['React Native', 'Expo', 'TanStack Query', 'Zustand', 'Node.js', 'Supabase', 'Firebase', 'Claude API'],
+    links: {
+      playStore: 'https://play.google.com/store/apps/details?id=com.hrkim0101.flirting.android&hl=ko',
+      appStore: 'https://apps.apple.com/kr/app/id6743381748',
+    },
+    images: [
+      '/images/flirting/flirting_1.jpg',
+      '/images/flirting/flirting_2.jpg',
+      '/images/flirting/flirting_3.jpg',
+      '/images/flirting/flirting_4.jpg',
+      '/images/flirting/flirting_5.jpg',
+      '/images/flirting/flirting_6.jpg',
+    ],
+  },
 ];
 
 export interface SideProject {
@@ -118,68 +144,62 @@ export interface SideProject {
   links?: {
     repo?: string;
     web?: string;
-    playStore?: string;
-    appStore?: string;
   };
 }
 
 export const sideProjectsData: SideProject[] = [
   {
-    id: 'flirting',
-    title: '플러팅',
-    titleEn: 'Flirting',
+    id: 'hanpet-app',
+    title: '한펫 — 반려동물 미용샵 탐색·커뮤니티 앱',
+    titleEn: 'Hanpet — Pet Grooming Shop Finder & Community App',
     description:
-      '동네·관심사 기반 소개팅 앱 플러팅(Google Play 5,000+ 다운로드)에 합류해 React Native(Expo) 앱, Node.js 백엔드, 어드민을 함께 개발하고 있습니다. 해외 사용자를 위한 이메일 OTP 인증과 6개 언어 현지화, 좋아요·매칭 적립부터 출금까지 이어지는 캐시 리워드 시스템을 앱·서버·어드민 전 구간에 걸쳐 구현했고, Claude API로 신규 가입 프로필 심사를 자동화했습니다.',
+      '반려동물 미용샵 탐색·리뷰와 커뮤니티를 담은 React Native 앱을 혼자 설계·개발했습니다. 샵 검색·지도·즐겨찾기·리뷰, 게시판, 4초 촬영 기반 펫로그 등 30여 개 화면을 구현했고, AES로 암호화된 기존 서버 API를 기능 스위치로 단계적으로 연결했습니다. 계획·검증·구현·정적 분석·PR·리뷰로 이어지는 6단계 Claude Code 서브에이전트 하네스로 코드 컨벤션을 강제하며 개발했고, 현재 Firebase·TestFlight로 테스트 배포 중입니다.',
     descriptionEn:
-      'Joined Flirting, a neighborhood- and interest-based dating app (5,000+ downloads on Google Play), working across the React Native (Expo) app, Node.js backend, and admin. Built email OTP authentication and 6-language localization for overseas users, a cash reward system spanning app, server, and admin — from like/match rewards through withdrawal — and automated new-profile review with the Claude API.',
+      'Designed and built solo: a React Native app for finding and reviewing pet grooming shops, with a community. Implemented 30+ screens including shop search, map, favorites, reviews, boards, and a 4-second-capture Petlog, and wired the existing AES-encrypted server API in stages behind feature switches. Developed with a 6-stage Claude Code sub-agent harness (plan, audit, build, static analysis, PR, review) that enforces code conventions. Currently in test distribution via Firebase and TestFlight.',
     coverage: [
       {
-        label: '모바일 앱 · React Native (Expo)',
+        label: '앱 · React Native 0.85',
         topics: [
-          '이메일 OTP 인증 · 휴대폰 번호 계정 복구 플로우',
-          '6개 언어(ko/ja/vi/id/ms/ar) 현지화',
-          '캐시 보관함 · 출금 신청 화면',
-          '전역 ErrorBoundary + Crashlytics 리포팅',
-          '프로필 사진 병렬 업로드, 토큰 갱신 경합 해결',
+          'New Architecture + TypeScript',
+          'Zustand + TanStack Query + MMKV',
+          '네이버 지도 샵 마커 · 지역 선택',
+          'Vision Camera 기반 펫로그 촬영',
+          'hanpet:// 딥링크 화면 진입',
         ],
       },
       {
-        label: '백엔드 · 어드민',
+        label: '개발 방식',
         topics: [
-          '캐시 적립 엔진 · 출금 · 소멸 처리 (Supabase RLS)',
-          '홈 추천 덱 개선 (재노출 윈도우, KST 일일 리셋)',
-          'Twilio Verify 기반 이메일 OTP',
-          'Claude API 가입 프로필 자동 심사 (애매하면 사람 심사로)',
-          '어드민 출금 관리 · 지급 CSV · 대시보드 지표',
+          '6단계 서브에이전트 하네스 (/rn-build)',
+          'RN 컨벤션 스킬 문서를 단일 기준으로 사용',
+          '암호화 API 레이어 + React Query 훅 분리',
+          '기능 스위치로 목데이터 → 서버 단계적 전환',
+          'Jest + RNTL 테스트 파일 140여 개',
         ],
       },
     ],
     coverageEn: [
       {
-        label: 'Mobile App · React Native (Expo)',
+        label: 'App · React Native 0.85',
         topics: [
-          'Email OTP auth · phone-number account recovery flow',
-          'Localization in 6 languages (ko/ja/vi/id/ms/ar)',
-          'Cash wallet · withdrawal request screens',
-          'Global ErrorBoundary + Crashlytics reporting',
-          'Parallel profile photo upload, token refresh race fix',
+          'New Architecture + TypeScript',
+          'Zustand + TanStack Query + MMKV',
+          'Naver Map shop markers · region picker',
+          'Petlog capture with Vision Camera',
+          'hanpet:// deep links into screens',
         ],
       },
       {
-        label: 'Backend · Admin',
+        label: 'How It Was Built',
         topics: [
-          'Cash reward engine · withdrawal · expiry (Supabase RLS)',
-          'Home recommendation deck (re-show window, KST daily reset)',
-          'Email OTP via Twilio Verify',
-          'Claude API auto-review of new profiles (falls back to human review)',
-          'Admin withdrawal management · payout CSV · dashboard metrics',
+          '6-stage sub-agent harness (/rn-build)',
+          'RN convention skill docs as the single source of truth',
+          'Encrypted API layer separated from React Query hooks',
+          'Feature switches for staged mock → server migration',
+          '140+ Jest + RNTL test files',
         ],
       },
     ],
-    links: {
-      playStore: 'https://play.google.com/store/apps/details?id=com.hrkim0101.flirting.android&hl=ko',
-      appStore: 'https://apps.apple.com/kr/app/id6743381748',
-    },
   },
   {
     id: 'hanpet-auto-poster',
