@@ -115,86 +115,71 @@ export interface SideProject {
     label: string;
     topics: string[];
   }[];
-  highlights?: {
-    name: string;
-    description: string;
-  }[];
   links?: {
     repo?: string;
     web?: string;
+    playStore?: string;
+    appStore?: string;
   };
 }
 
 export const sideProjectsData: SideProject[] = [
   {
-    id: 'gamdom-clone',
-    title: '게임 플랫폼 UI 클론',
-    titleEn: 'Game Platform UI Clone',
-    descriptionEn:
-      'A clone implementation of an overseas gaming platform\'s UI/UX built with a Next.js 15 + React 19 stack. Focused on building interactive components from scratch without external component libraries, along with a multi-locale routing system and a gaming-specific design system.',
+    id: 'flirting',
+    title: '플러팅',
+    titleEn: 'Flirting',
     description:
-      '해외 게임 플랫폼의 UI/UX를 Next.js 15 + React 19 스택으로 클론 구현한 프로젝트입니다. 외부 컴포넌트 라이브러리 없이 직접 구현한 인터랙티브 컴포넌트들을 중심으로, 다국어 라우팅과 게이밍 특화 디자인 시스템 구축에 집중했습니다.',
+      '동네·관심사 기반 소개팅 앱 플러팅(Google Play 5,000+ 다운로드)에 합류해 React Native(Expo) 앱, Node.js 백엔드, 어드민을 함께 개발하고 있습니다. 해외 사용자를 위한 이메일 OTP 인증과 6개 언어 현지화, 좋아요·매칭 적립부터 출금까지 이어지는 캐시 리워드 시스템을 앱·서버·어드민 전 구간에 걸쳐 구현했고, Claude API로 신규 가입 프로필 심사를 자동화했습니다.',
+    descriptionEn:
+      'Joined Flirting, a neighborhood- and interest-based dating app (5,000+ downloads on Google Play), working across the React Native (Expo) app, Node.js backend, and admin. Built email OTP authentication and 6-language localization for overseas users, a cash reward system spanning app, server, and admin — from like/match rewards through withdrawal — and automated new-profile review with the Claude API.',
     coverage: [
       {
-        label: 'Tech Stack',
+        label: '모바일 앱 · React Native (Expo)',
         topics: [
-          'Next.js 15 App Router + React 19',
-          'TypeScript + Tailwind CSS 4',
-          'Zustand + TanStack Query',
-          'next-intl 다국어(ko/en) locale 라우팅',
-          'Turbopack 개발 빌드',
+          '이메일 OTP 인증 · 휴대폰 번호 계정 복구 플로우',
+          '6개 언어(ko/ja/vi/id/ms/ar) 현지화',
+          '캐시 보관함 · 출금 신청 화면',
+          '전역 ErrorBoundary + Crashlytics 리포팅',
+          '프로필 사진 병렬 업로드, 토큰 갱신 경합 해결',
         ],
       },
       {
-        label: 'Design System',
+        label: '백엔드 · 어드민',
         topics: [
-          'CSS 변수 자동 생성 스크립트 (colors.ts → CSS vars)',
-          '게이밍 네온 테마 + 다크 최적화',
-          '시맨틱 컬러 토큰 체계',
-          'IcoMoon 커스텀 아이콘 시스템',
-          '반응형 브레이크포인트 설계',
+          '캐시 적립 엔진 · 출금 · 소멸 처리 (Supabase RLS)',
+          '홈 추천 덱 개선 (재노출 윈도우, KST 일일 리셋)',
+          'Twilio Verify 기반 이메일 OTP',
+          'Claude API 가입 프로필 자동 심사 (애매하면 사람 심사로)',
+          '어드민 출금 관리 · 지급 CSV · 대시보드 지표',
         ],
       },
     ],
     coverageEn: [
       {
-        label: 'Tech Stack',
+        label: 'Mobile App · React Native (Expo)',
         topics: [
-          'Next.js 15 App Router + React 19',
-          'TypeScript + Tailwind CSS 4',
-          'Zustand + TanStack Query',
-          'next-intl multi-locale (ko/en) routing',
-          'Turbopack dev build',
+          'Email OTP auth · phone-number account recovery flow',
+          'Localization in 6 languages (ko/ja/vi/id/ms/ar)',
+          'Cash wallet · withdrawal request screens',
+          'Global ErrorBoundary + Crashlytics reporting',
+          'Parallel profile photo upload, token refresh race fix',
         ],
       },
       {
-        label: 'Design System',
+        label: 'Backend · Admin',
         topics: [
-          'Auto CSS variable generation script (colors.ts → CSS vars)',
-          'Gaming neon theme + dark-optimized',
-          'Semantic color token system',
-          'IcoMoon custom icon system',
-          'Responsive breakpoint design',
+          'Cash reward engine · withdrawal · expiry (Supabase RLS)',
+          'Home recommendation deck (re-show window, KST daily reset)',
+          'Email OTP via Twilio Verify',
+          'Claude API auto-review of new profiles (falls back to human review)',
+          'Admin withdrawal management · payout CSV · dashboard metrics',
         ],
       },
     ],
-    highlights: [
-      {
-        name: 'TabSelector',
-        description:
-          '선택 탭에 슬라이딩 배경이 따라오는 탭바. 라이브러리 없이 offsetLeft/offsetWidth로 직접 위치 계산. default / neon 두 가지 variant 지원.',
-      },
-      {
-        name: 'BottomSheetModal',
-        description:
-          'Context + Portal 기반 Compound Component. Trigger · Overlay · Content · Header 등 Radix UI 방식의 API를 직접 구현. 애니메이션 완료 후 unmount 처리.',
-      },
-      {
-        name: 'SlideSelector',
-        description:
-          '수평 스크롤 카테고리 바. 양끝 도달 여부에 따라 그라디언트 페이드 + 화살표 버튼 조건부 표시. 모바일에서 스크롤 다운 시 자동 hide.',
-      },
-    ],
+    links: {
+      playStore: 'https://play.google.com/store/apps/details?id=com.hrkim0101.flirting.android&hl=ko',
+      appStore: 'https://apps.apple.com/kr/app/id6743381748',
+    },
   },
   {
     id: 'hanpet-auto-poster',
