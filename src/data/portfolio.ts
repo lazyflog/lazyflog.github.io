@@ -8,7 +8,7 @@ export const heroData = {
   name: '양종선',
   nameEn: 'Yang Jong-seon',
   title: 'Frontend / Mobile Developer',
-  subtitle: '단순한 문제해결을 넘어 비즈니스 성공에 직접적으로 기여합니다.',
+  subtitle: '문제해결만이 아니라 비즈니스 성공에도 직접 기여합니다.',
   subtitleEn: 'Going beyond simple problem-solving to directly contribute to business success.',
   cta: 'View Projects',
 };
@@ -16,7 +16,7 @@ export const heroData = {
 export const aboutData = {
   bio: [
     '지난 5년간 React Native 기반 모바일 앱 개발을 중심으로, 0에서 10만 명 이상의 사용자로 성장한 서비스의 전체 주기를 경험한 프론트엔드 개발자입니다.',
-    '초기 MVP 구축부터 성능 최적화, 운영 자동화까지 제품의 전 생애주기에서 문제를 정의하고 해결해 왔습니다. 기능 개발을 넘어 서비스 안정성, 운영 효율성, 사용자 경험이라는 관점에서 주도적으로 가치를 만들어 온 경험이 있습니다.',
+    '초기 MVP 구축부터 성능 최적화, 운영 자동화까지 제품의 전 생애주기에서 문제를 정의하고 해결해 왔습니다. 기능 개발에 그치지 않고 서비스 안정성, 운영 효율성, 사용자 경험이라는 관점에서 주도적으로 가치를 만들어 온 경험이 있습니다.',
   ],
   bioEn: [
     'A frontend developer with 5+ years focused on React Native mobile development, with hands-on experience across the full lifecycle of a service that grew from zero to 100,000+ users.',
@@ -61,7 +61,7 @@ export const projectsData: Project[] = [
     subtitle: 'EV 충전 및 차량구독 플랫폼',
     subtitleEn: 'EV Charging & Vehicle Subscription Platform',
     description:
-      '10만+ 사용자 규모의 EV 충전·차량구독 플랫폼으로, 초기 합류부터 정식 런칭까지 충전소 탐색·검색, 모두페이 결제(NFC·QR), 마이카·테슬라 API 연동, 대리충전 등 주요 도메인 기능을 직접 설계·개발했습니다. 이후 웹·앱으로 분리 운영되던 이벤트 페이지를 웹뷰로 통합해 관리 포인트를 줄였으며, 모바일 앱(20+ 스크린), Next.js 이벤트 웹, 어드민 대시보드(45+ 페이지)를 함께 개발했습니다.',
+      '10만+ 사용자 규모의 EV 충전·차량구독 플랫폼으로, 초기 합류부터 정식 런칭까지 충전소 탐색·검색, 모두페이 결제(NFC·QR), 마이카·테슬라 API 연동, 대리충전 등 주요 도메인 기능을 직접 설계·개발했습니다. 이후 웹·앱으로 분리 운영되던 이벤트 페이지를 웹뷰로 통합해 관리 포인트를 줄였습니다. 모바일 앱(20+ 스크린), Next.js 이벤트 웹, 어드민 대시보드(45+ 페이지)도 함께 개발했습니다.',
     descriptionEn:
       'An EV charging and vehicle subscription platform with 100,000+ users. From initial onboarding to official launch, I designed and built core domain features including charging station search, ModuPay payments (NFC/QR), MyCar and Tesla API integration, and proxy charging. Later consolidated fragmented web/app event pages into a unified WebView, and developed the mobile app (20+ screens), Next.js event web, and admin dashboard (45+ pages).',
     scope: ['모바일 앱', '웹', '어드민'],
@@ -85,7 +85,7 @@ export const projectsData: Project[] = [
     subtitle: 'BMW OEM EV 충전 앱',
     subtitleEn: 'BMW OEM EV Charging App',
     description:
-      'BMW 전기차 오너를 위한 OEM 충전 네트워크 앱 리뉴얼 프로젝트입니다. 대량의 충전소 데이터를 지도에 표시할 때 발생하는 성능 저하를 해결하기 위해 한국 지도를 100m 단위 셀로 분할하는 그리드 인덱싱 로직을 직접 설계해 지도 로딩 및 스크롤 성능을 개선했습니다. 외부 협력사와의 공동 개발 환경에서 문서화되지 않은 레거시 API 예외처리 로직도 직접 설계했습니다. PNC(Plug & Charge) 계약 관리, RF 카드 관리, SQLCipher 암호화 SQLite 기반 오프라인 충전소 데이터를 구현했습니다.',
+      'BMW 전기차 오너를 위한 OEM 충전 네트워크 앱 리뉴얼 프로젝트입니다. 대량의 충전소 데이터를 지도에 표시할 때 발생하는 성능 저하를 해결하기 위해 한국 지도를 100m 단위 셀로 분할하는 그리드 인덱싱 로직을 직접 설계해 지도 로딩 및 스크롤 성능을 개선했습니다. 외부 협력사와 공동 개발하는 환경에서 문서화되지 않은 레거시 API 예외처리 로직도 직접 설계했습니다. PNC(Plug & Charge) 계약 관리, RF 카드 관리, SQLCipher 암호화 SQLite 기반 오프라인 충전소 데이터를 구현했습니다.',
     descriptionEn:
       'An OEM charging network app renewal for BMW EV owners. To address performance degradation when rendering large volumes of charging station data on a map, I designed a grid indexing system that divides the Korean map into 100m cells, significantly improving map load and scroll performance. I also designed undocumented legacy API error-handling logic in a joint development environment with an external vendor. Implemented PnC (Plug & Charge) contract management, RF card management, and offline charging station data using SQLCipher-encrypted SQLite.',
     scope: ['모바일 앱'],
@@ -106,7 +106,7 @@ export const projectsData: Project[] = [
     subtitle: '동네·관심사 기반 소개팅 앱',
     subtitleEn: 'Neighborhood- & Interest-Based Dating App',
     description:
-      '내가 정한 거리 안에서 관심사가 맞는 사람을 연결하는 소개팅 앱으로, 한국·베트남·인도네시아 등에서 서비스 중입니다(Google Play 5,000+ 다운로드). 운영 중인 서비스에 합류해 React Native(Expo) 앱, Node.js 백엔드, 어드민을 함께 개발했습니다. 해외 사용자를 위한 이메일 OTP 인증과 6개 언어 현지화, 좋아요·매칭 적립부터 출금까지 이어지는 캐시 리워드 시스템을 앱·서버·어드민 전 구간에 걸쳐 구현했고, 홈 추천 덱 로직을 개선했으며, Claude API로 신규 가입 프로필 심사를 자동화했습니다.',
+      '내가 정한 거리 안에서 관심사가 맞는 사람을 연결하는 소개팅 앱으로, 한국·베트남·인도네시아 등에서 서비스 중입니다(Google Play 5,000+ 다운로드). 운영 중인 서비스에 합류해 React Native(Expo) 앱, Node.js 백엔드, 어드민을 함께 개발했습니다. 해외 사용자를 위한 이메일 OTP 인증과 6개 언어 현지화, 좋아요·매칭 적립부터 출금까지 이어지는 캐시 리워드 시스템을 앱·서버·어드민 전 구간에 걸쳐 구현했습니다. 홈 추천 덱 로직을 개선했고 Claude API로 신규 가입 프로필 심사를 자동화했습니다.',
     descriptionEn:
       'A dating app that connects people with shared interests within a distance they choose, live in Korea, Vietnam, Indonesia and more (5,000+ downloads on Google Play). I joined the running service and worked across the React Native (Expo) app, Node.js backend, and admin. Built email OTP authentication and 6-language localization for overseas users, a cash reward system spanning app, server, and admin — from like/match rewards through withdrawal — improved the home recommendation deck logic, and automated new-profile review with the Claude API.',
     scope: ['모바일 앱', '백엔드', '어드민'],
@@ -153,9 +153,9 @@ export const sideProjectsData: SideProject[] = [
     title: '한펫 — 반려동물 미용샵 탐색·커뮤니티 앱',
     titleEn: 'Hanpet — Pet Grooming Shop Finder & Community App',
     description:
-      '반려동물 미용샵 탐색·리뷰와 커뮤니티를 담은 React Native 앱을 혼자 설계·개발했습니다. 샵 검색·지도·즐겨찾기·리뷰, 게시판, 4초 촬영 기반 펫로그 등 30여 개 화면을 구현했고, AES로 암호화된 기존 서버 API를 기능 스위치로 단계적으로 연결했습니다. 계획·검증·구현·정적 분석·PR·리뷰로 이어지는 6단계 Claude Code 서브에이전트 하네스로 코드 컨벤션을 강제하며 개발했고, 현재 Firebase·TestFlight로 테스트 배포 중입니다.',
+      '반려동물 미용샵 탐색·리뷰와 커뮤니티를 담은 React Native 앱을 혼자 설계·개발했습니다. 샵 검색·지도·즐겨찾기·리뷰, 게시판, 4초 촬영 기반 펫로그 등 30여 개 화면을 구현했습니다. 계획·검증·구현·정적 분석·PR·리뷰로 이어지는 6단계 Claude Code 서브에이전트 하네스로 코드 컨벤션을 강제하며 개발했고 현재 Firebase·TestFlight로 테스트 배포 중입니다.',
     descriptionEn:
-      'Designed and built solo: a React Native app for finding and reviewing pet grooming shops, with a community. Implemented 30+ screens including shop search, map, favorites, reviews, boards, and a 4-second-capture Petlog, and wired the existing AES-encrypted server API in stages behind feature switches. Developed with a 6-stage Claude Code sub-agent harness (plan, audit, build, static analysis, PR, review) that enforces code conventions. Currently in test distribution via Firebase and TestFlight.',
+      'Designed and built solo: a React Native app for finding and reviewing pet grooming shops, with a community. Implemented 30+ screens including shop search, map, favorites, reviews, boards, and a 4-second-capture Petlog. Developed with a 6-stage Claude Code sub-agent harness (plan, audit, build, static analysis, PR, review) that enforces code conventions. Currently in test distribution via Firebase and TestFlight.',
     coverage: [
       {
         label: '앱 · React Native 0.85',
@@ -206,7 +206,7 @@ export const sideProjectsData: SideProject[] = [
     title: '반려동물 커뮤니티 게시글 자동 포스팅 봇',
     titleEn: 'Pet Community Auto-Posting Bot',
     description:
-      '반려동물 커뮤니티 한펫(hanpet.co.kr)에 자연스러운 게시글을 자동으로 생성·업로드하는 봇입니다. 96개의 페르소나 프로필(나이·지역·직업·반려동물·말투)을 기반으로 Claude API가 맥락에 맞는 글을 생성하며, 자유게시판·앨범·펫상식 3개 게시판에 하루 9개씩 자동 포스팅합니다. 트렌드 수집부터 이미지 선택·업로드까지 전 과정을 자동화했습니다.',
+      '반려동물 커뮤니티 한펫(hanpet.co.kr)에 자연스러운 게시글을 자동으로 생성·업로드하는 봇입니다. 96개의 페르소나 프로필(나이·지역·직업·반려동물·말투)을 기반으로 Claude API가 맥락에 맞는 글을 생성하며 자유게시판·앨범·펫상식 3개 게시판에 하루 9개씩 자동 포스팅합니다. 트렌드 수집부터 이미지 선택·업로드까지 전 과정을 자동화했습니다.',
     descriptionEn:
       'A bot that automatically generates and uploads natural-sounding posts to the pet community Hanpet (hanpet.co.kr). Claude API generates contextually appropriate content based on 96 persona profiles (age, region, job, pet, tone), auto-posting 9 times a day across 3 boards: General, Album, and Pet Tips. The entire pipeline — from trend collection to image selection and upload — is fully automated.',
     coverage: [
