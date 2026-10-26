@@ -13,8 +13,37 @@ html.en .lang-ko { display: none !important; }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 4rem; /* fixed header height */
 }
 
 body {
   font-family: var(--font-sans);
+}
+
+button {
+  cursor: pointer;
+}
+
+a,
+button {
+  touch-action: manipulation;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-teal-500);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

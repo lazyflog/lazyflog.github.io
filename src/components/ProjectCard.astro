@@ -17,42 +17,55 @@ const cardId = `carousel-${project.id}`;
         <div class="carousel-track flex h-full transition-transform duration-300 ease-in-out">
           {images.map((src, i) => (
             <div class="carousel-slide flex-shrink-0 w-full h-full">
-              <img
-                src={src}
-                alt={title}
-                class="w-full h-full object-cover cursor-zoom-in"
-                loading="lazy"
+              <button
+                type="button"
+                class="carousel-zoom block w-full h-full cursor-zoom-in focus-visible:outline-offset-[-4px]"
+                aria-label={`${title} 스크린샷 ${i + 1} 크게 보기`}
                 data-images={JSON.stringify(images)}
                 data-index={i}
-              />
+                data-alt={`${title} 스크린샷`}
+              >
+                <img
+                  src={src}
+                  alt={`${title} 스크린샷 ${i + 1}`}
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </button>
             </div>
           ))}
         </div>
         {images.length > 1 && (
           <>
             <button
+              type="button"
               class="carousel-prev absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-black/40 text-white hover:bg-black/60 transition-colors"
               aria-label="이전 이미지"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
               </svg>
             </button>
             <button
+              type="button"
               class="carousel-next absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-black/40 text-white hover:bg-black/60 transition-colors"
               aria-label="다음 이미지"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
               </svg>
             </button>
-            <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
+            <div class="absolute bottom-0.5 left-1/2 -translate-x-1/2 flex">
               {images.map((_, i) => (
                 <button
-                  class="carousel-dot w-1.5 h-1.5 rounded-full bg-white/50 transition-colors"
+                  type="button"
+                  class="carousel-dot group/dot w-6 h-6 flex items-center justify-center"
                   data-index={i}
                   aria-label={`이미지 ${i + 1}`}
-                />
+                >
+                  <span class="w-1.5 h-1.5 rounded-full bg-white/50 transition-colors group-aria-[current=true]/dot:bg-white"></span>
+                </button>
               ))}
             </div>
           </>
@@ -64,7 +77,7 @@ const cardId = `carousel-${project.id}`;
           <div class="text-5xl font-bold text-teal-500/20 dark:text-teal-400/20 select-none">
             {title.charAt(0)}
           </div>
-          <p class="text-xs text-gray-400 dark:text-gray-600">이미지 준비 중</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">이미지 준비 중</p>
         </div>
       </div>
     )}
@@ -73,20 +86,20 @@ const cardId = `carousel-${project.id}`;
   <div class="p-6">
     <div class="flex flex-wrap gap-1.5 mb-4">
       {scope.map((s) => (
-        <span class="lang-ko px-2.5 py-0.5 text-xs font-semibold bg-teal-500/10 dark:bg-teal-400/10 text-teal-600 dark:text-teal-400 rounded-full">
+        <span class="lang-ko px-2.5 py-0.5 text-xs font-semibold bg-teal-500/10 dark:bg-teal-400/10 text-teal-700 dark:text-teal-400 rounded-full">
           {s}
         </span>
       ))}
       {scopeEn && scopeEn.map((s) => (
-        <span class="lang-en px-2.5 py-0.5 text-xs font-semibold bg-teal-500/10 dark:bg-teal-400/10 text-teal-600 dark:text-teal-400 rounded-full">
+        <span class="lang-en px-2.5 py-0.5 text-xs font-semibold bg-teal-500/10 dark:bg-teal-400/10 text-teal-700 dark:text-teal-400 rounded-full">
           {s}
         </span>
       ))}
     </div>
 
     <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-1">{title}</h3>
-    <p class="lang-ko text-sm text-teal-500 dark:text-teal-400 font-medium mb-3">{subtitle}</p>
-    {subtitleEn && <p class="lang-en text-sm text-teal-500 dark:text-teal-400 font-medium mb-3">{subtitleEn}</p>}
+    <p class="lang-ko text-sm text-teal-700 dark:text-teal-400 font-medium mb-3">{subtitle}</p>
+    {subtitleEn && <p class="lang-en text-sm text-teal-700 dark:text-teal-400 font-medium mb-3">{subtitleEn}</p>}
     <p class="lang-ko text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-5">{description}</p>
     {descriptionEn && <p class="lang-en text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-5">{descriptionEn}</p>}
 
@@ -105,9 +118,9 @@ const cardId = `carousel-${project.id}`;
             href={links.web}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-1.5 text-sm font-medium text-teal-500 dark:text-teal-400 hover:text-teal-600 dark:hover:text-teal-300 transition-colors"
+            class="inline-flex items-center gap-1.5 text-sm font-medium text-teal-700 dark:text-teal-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
             </svg>
             <span class="lang-ko">홈페이지</span>
@@ -122,9 +135,9 @@ const cardId = `carousel-${project.id}`;
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-1.5 text-sm font-medium text-teal-500 dark:text-teal-400 hover:text-teal-600 dark:hover:text-teal-300 transition-colors"
+            class="inline-flex items-center gap-1.5 text-sm font-medium text-teal-700 dark:text-teal-400 hover:text-teal-800 dark:hover:text-teal-300 transition-colors"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
             </svg>
             {label}
@@ -137,7 +150,7 @@ const cardId = `carousel-${project.id}`;
             rel="noopener noreferrer"
             class="inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
             </svg>
             GitHub
@@ -159,9 +172,11 @@ const cardId = `carousel-${project.id}`;
     function goTo(index: number) {
       current = (index + total) % total;
       track.style.transform = `translateX(-${current * 100}%)`;
+      slides.forEach((slide, i) => {
+        (slide as HTMLElement).inert = i !== current;
+      });
       dots.forEach((dot, i) => {
-        dot.classList.toggle('bg-white', i === current);
-        dot.classList.toggle('bg-white/50', i !== current);
+        dot.setAttribute('aria-current', String(i === current));
       });
     }
 
@@ -171,11 +186,11 @@ const cardId = `carousel-${project.id}`;
     carousel.querySelector('.carousel-next')?.addEventListener('click', () => goTo(current + 1));
     dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
 
-    carousel.querySelectorAll('img[data-images]').forEach((img) => {
-      img.addEventListener('click', () => {
-        const images = JSON.parse((img as HTMLElement).dataset.images!);
-        const index = parseInt((img as HTMLElement).dataset.index!, 10);
-        (window as any).openLightbox(images, index);
+    carousel.querySelectorAll<HTMLElement>('.carousel-zoom').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const images = JSON.parse(btn.dataset.images!);
+        const index = parseInt(btn.dataset.index!, 10);
+        (window as any).openLightbox(images, index, btn.dataset.alt);
       });
     });
   });
