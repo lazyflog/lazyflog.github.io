@@ -145,6 +145,11 @@ export interface SideProject {
     repo?: string;
     web?: string;
   };
+  logo?: {
+    src: string;
+    srcDark?: string;
+    alt: string;
+  };
   media?: {
     src: string;
     alt: string;
@@ -219,6 +224,67 @@ export const sideProjectsData: SideProject[] = [
     },
   },
   {
+    id: 'agent-community-writer',
+    title: 'Agent Community Writer — 페르소나 기반 커뮤니티 글 생성기 (오픈소스)',
+    titleEn: 'Agent Community Writer — Persona-Driven Community Post Generator (Open Source)',
+    description:
+      '가상 페르소나의 말투와 관심사를 살려 커뮤니티 게시글을 생성하는 TypeScript 템플릿입니다. Claude가 초안을 쓰면 규칙 검사와 별도 컨텍스트의 Claude 평가를 거치고, 반려되면 그 이유를 반영해 다시 씁니다. 웹 검색으로 모은 오늘의 이슈를 대화 소재로 녹이고, Unsplash 사진을 글에 맞게 골라 붙인 뒤 원하는 발행 대상(콘솔·파일·webhook)으로 보냅니다. 공개하면서 AI 생성 표기를 기본으로 켜고, 인증 없는 발행을 막고, 기본 실행을 dry-run으로 두는 등 오남용을 막는 장치를 넣었습니다. 문서는 영어와 한국어로 제공합니다.',
+    descriptionEn:
+      'A TypeScript template that writes community posts in the voice of fictional personas. Claude drafts each post, which then goes through rule checks and a separate Claude review; rejected drafts are rewritten with the reasons fed back in. Today\'s topics, gathered with web search, are worked in as casual conversation, matching Unsplash photos are attached, and the result is sent to a pluggable publisher (console, file or webhook). Built with misuse in mind: an AI-generated notice on by default, no unauthenticated publishing, and dry-run as the default. Docs in English and Korean.',
+    coverage: [
+      {
+        label: '생성 파이프라인 · Claude API',
+        topics: [
+          '페르소나·게시판·최근 글 히스토리 기반 초안 생성',
+          '규칙 검사 → Claude 평가 → 피드백 반영 재생성',
+          'Zod 스키마 구조화 출력으로 응답 검증',
+          '서버 측 웹 검색으로 오늘의 트렌드 수집',
+          '사진 설명을 보고 글에 맞는 Unsplash 이미지 선택',
+        ],
+      },
+      {
+        label: '오픈소스 공개 과정',
+        topics: [
+          'mjs → TypeScript 재작성, 설정 파일로 커뮤니티 일반화',
+          'AI 생성 표기 기본 적용 + payload에 aiGenerated 포함',
+          'webhook 발행 시 Bearer 토큰 필수',
+          'Unsplash 가이드라인(출처 표시·다운로드 집계) 준수',
+          'GitHub Actions 수동 실행 + dry-run 기본값',
+        ],
+      },
+    ],
+    coverageEn: [
+      {
+        label: 'Generation Pipeline · Claude API',
+        topics: [
+          'Drafts from persona, board and recent post history',
+          'Rule check → Claude review → rewrite with feedback',
+          'Responses validated with Zod structured outputs',
+          'Daily trends via server-side web search',
+          'Unsplash photos chosen from their descriptions',
+        ],
+      },
+      {
+        label: 'Open-Sourcing It',
+        topics: [
+          'Rewritten from mjs to TypeScript, generalised via config',
+          'AI-generated notice by default + aiGenerated in payload',
+          'Bearer token required for webhook publishing',
+          'Follows Unsplash guidelines (attribution, download tracking)',
+          'GitHub Actions manual-only, dry-run by default',
+        ],
+      },
+    ],
+    links: {
+      repo: 'https://github.com/lazyflog/agent-community-writer',
+    },
+    logo: {
+      src: '/images/agent-community-writer/logo.png',
+      srcDark: '/images/agent-community-writer/logo-dark.png',
+      alt: 'Agent Community Writer',
+    },
+  },
+  {
     id: 'hanpet-app',
     title: '한펫 — 반려동물 미용샵 탐색·커뮤니티 앱',
     titleEn: 'Hanpet — Pet Grooming Shop Finder & Community App',
@@ -267,55 +333,6 @@ export const sideProjectsData: SideProject[] = [
           'Encrypted API layer separated from React Query hooks',
           'Feature switches for staged mock → server migration',
           '140+ Jest + RNTL test files',
-        ],
-      },
-    ],
-  },
-  {
-    id: 'hanpet-auto-poster',
-    title: '반려동물 커뮤니티 게시글 자동 포스팅 봇',
-    titleEn: 'Pet Community Auto-Posting Bot',
-    description:
-      '반려동물 커뮤니티 한펫(hanpet.co.kr)에 자연스러운 게시글을 자동으로 생성·업로드하는 봇입니다. 96개의 페르소나 프로필(나이·지역·직업·반려동물·말투)을 기반으로 Claude API가 맥락에 맞는 글을 생성하며 자유게시판·앨범·펫상식 3개 게시판에 하루 9개씩 자동 포스팅합니다. 트렌드 수집부터 이미지 선택·업로드까지 전 과정을 자동화했습니다.',
-    descriptionEn:
-      'A bot that automatically generates and uploads natural-sounding posts to the pet community Hanpet (hanpet.co.kr). Claude API generates contextually appropriate content based on 96 persona profiles (age, region, job, pet, tone), auto-posting 9 times a day across 3 boards: General, Album, and Pet Tips. The entire pipeline — from trend collection to image selection and upload — is fully automated.',
-    coverage: [
-      {
-        label: 'Claude API',
-        topics: [
-          '페르소나·게시판 맥락 기반 글 생성',
-          'web_search로 오늘의 트렌드 수집',
-          '게시글 내용 기반 최적 이미지 선택',
-          '히스토리 기반 주제 중복 방지',
-        ],
-      },
-      {
-        label: '자동화 파이프라인',
-        topics: [
-          'Unsplash API 이미지 후보 수집',
-          '96개 페르소나 히스토리 관리',
-          '게시판별 포스팅 전략 분리',
-          '한펫 API 연동 자동 업로드',
-        ],
-      },
-    ],
-    coverageEn: [
-      {
-        label: 'Claude API',
-        topics: [
-          'Post generation based on persona & board context',
-          'Trend collection via web_search',
-          'Optimal image selection based on post content',
-          'History-based topic deduplication',
-        ],
-      },
-      {
-        label: 'Automation Pipeline',
-        topics: [
-          'Unsplash API image candidate collection',
-          '96 persona history management',
-          'Per-board posting strategy',
-          'Hanpet API integration for auto-upload',
         ],
       },
     ],

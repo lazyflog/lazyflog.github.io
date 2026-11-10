@@ -1,6 +1,5 @@
 ---
 import { sideProjectsData } from '../data/portfolio';
-import HanpetDemo from './HanpetDemo.astro';
 ---
 
 <section id="side-projects" class="py-24 border-t border-gray-100 dark:border-gray-800">
@@ -16,6 +15,28 @@ import HanpetDemo from './HanpetDemo.astro';
       {sideProjectsData.map((project) => (
         <article class="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden">
           <div class="p-6">
+            {project.logo && (
+              <div class="mb-5">
+                <img
+                  src={project.logo.src}
+                  alt={project.logo.alt}
+                  width="1200"
+                  height="347"
+                  class:list={['h-20 sm:h-24 w-auto', project.logo.srcDark && 'dark:hidden']}
+                  decoding="async"
+                />
+                {project.logo.srcDark && (
+                  <img
+                    src={project.logo.srcDark}
+                    alt={project.logo.alt}
+                    width="1200"
+                    height="347"
+                    class="hidden dark:block h-20 sm:h-24 w-auto"
+                    decoding="async"
+                  />
+                )}
+              </div>
+            )}
             <div class="flex flex-wrap items-center gap-3 mb-3">
               <h3 class="text-lg font-bold text-gray-900 dark:text-white">
                 <span class="lang-ko">{project.title}</span>
@@ -101,7 +122,6 @@ import HanpetDemo from './HanpetDemo.astro';
               </figure>
             )}
 
-            {project.id === 'hanpet-auto-poster' && <HanpetDemo />}
           </div>
         </article>
       ))}
