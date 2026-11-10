@@ -76,6 +76,31 @@ import HanpetDemo from './HanpetDemo.astro';
               ))}
             </div>
 
+            {project.media && (
+              <figure class="mt-6">
+                <img
+                  src={project.media.src}
+                  alt={project.media.alt}
+                  class="lang-ko w-full max-w-md mx-auto rounded-lg border border-gray-200 dark:border-gray-700"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <img
+                  src={project.media.src}
+                  alt={project.media.altEn ?? project.media.alt}
+                  class="lang-en w-full max-w-md mx-auto rounded-lg border border-gray-200 dark:border-gray-700"
+                  loading="lazy"
+                  decoding="async"
+                />
+                {project.media.caption && (
+                  <figcaption class="lang-ko mt-2 text-center text-xs text-gray-500 dark:text-gray-400">{project.media.caption}</figcaption>
+                )}
+                {(project.media.captionEn ?? project.media.caption) && (
+                  <figcaption class="lang-en mt-2 text-center text-xs text-gray-500 dark:text-gray-400">{project.media.captionEn ?? project.media.caption}</figcaption>
+                )}
+              </figure>
+            )}
+
             {project.id === 'hanpet-auto-poster' && <HanpetDemo />}
           </div>
         </article>

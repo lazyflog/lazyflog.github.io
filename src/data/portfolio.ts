@@ -145,9 +145,79 @@ export interface SideProject {
     repo?: string;
     web?: string;
   };
+  media?: {
+    src: string;
+    alt: string;
+    altEn?: string;
+    caption?: string;
+    captionEn?: string;
+  };
 }
 
 export const sideProjectsData: SideProject[] = [
+  {
+    id: 'reels-automation',
+    title: 'Reels Automation — 제품 영상을 인스타그램 릴스로 (오픈소스)',
+    titleEn: 'Reels Automation — Product Footage to Instagram Reels (Open Source)',
+    description:
+      '직접 찍은 제품 영상을 넣으면 AI가 영상을 분석해 대본을 쓰고, 음성·자막·표지를 입혀 검수를 거쳐 인스타그램 릴스로 올려 주는 셀프 호스팅 파이프라인입니다. 실제로 운영하던 자동화 시스템을 MIT 라이선스로 공개하면서 저작권·플랫폼 약관을 검토해 위험한 기능은 걷어내거나 기본 비활성화했고, 출력 언어·타깃·모델을 설정으로 분리했습니다. 문서는 영어를 기본으로 한국어·중국어·일본어를 함께 제공합니다.',
+    descriptionEn:
+      'A self-hosted pipeline that turns your own product footage into Instagram Reels: AI analyses the video and writes the script, then voice-over, subtitles and a cover are added, reviewed in a dashboard and published. Open-sourced under MIT from an automation system I ran in production — after a copyright and terms-of-service review that removed or disabled risky features by default — with configurable output language, audience and models. Docs in English, Korean, Chinese and Japanese.',
+    coverage: [
+      {
+        label: '파이프라인 · FastAPI + Celery',
+        topics: [
+          'Gemini 영상 분석 → GPT 대본·캡션 생성',
+          'ElevenLabs TTS + moviepy·ffmpeg 편집',
+          'Next.js 대시보드 2단계 검수 (대본·표지 → 최종본)',
+          'Instagram API 릴스 업로드',
+          'LLM-as-Judge 대본 평가 + 영상 품질 검사',
+        ],
+      },
+      {
+        label: '오픈소스 공개 과정',
+        topics: [
+          '저작권·플랫폼 약관 검토 → 위험 기능 제거·옵트인',
+          '라이선스 불명 자산(폰트·BGM·SDK) 정리',
+          '마이그레이션 22개 → 단일 baseline',
+          'GitHub Actions CI + main 브랜치 보호',
+          'README·법률 문서 4개 언어 (EN·KO·ZH·JA)',
+        ],
+      },
+    ],
+    coverageEn: [
+      {
+        label: 'Pipeline · FastAPI + Celery',
+        topics: [
+          'Gemini video analysis → GPT script & caption',
+          'ElevenLabs TTS + moviepy/ffmpeg editing',
+          'Two-step review in a Next.js dashboard',
+          'Instagram Reels upload via the official API',
+          'LLM-as-judge script scoring + video checks',
+        ],
+      },
+      {
+        label: 'Open-Sourcing It',
+        topics: [
+          'Copyright/ToS review → risky features removed or opt-in',
+          'Cleaned out assets with unclear licences (fonts, BGM, SDK)',
+          '22 migrations squashed into one baseline',
+          'GitHub Actions CI + protected main branch',
+          'README and legal docs in 4 languages (EN·KO·ZH·JA)',
+        ],
+      },
+    ],
+    links: {
+      repo: 'https://github.com/lazyflog/reels-automation-oss',
+    },
+    media: {
+      src: '/images/reels-automation/demo-compare.webp',
+      alt: '왼쪽: 원본 제품 영상, 오른쪽: 생성된 릴스',
+      altEn: 'Left: original product clip, right: generated Reel',
+      caption: '왼쪽 원본 영상 · 오른쪽 생성된 릴스 (표지·AI 내레이션·자막)',
+      captionEn: 'Left: original clip · Right: generated Reel (cover, AI voice-over, subtitles)',
+    },
+  },
   {
     id: 'hanpet-app',
     title: '한펫 — 반려동물 미용샵 탐색·커뮤니티 앱',
