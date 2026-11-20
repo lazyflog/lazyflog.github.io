@@ -56,6 +56,26 @@ export interface Project {
 
 export const projectsData: Project[] = [
   {
+    id: 'luckybox',
+    title: '럭키박스',
+    subtitle: '꽝 없는 럭키박스 커머스',
+    subtitleEn: 'No-Blank Lucky Box Commerce',
+    description:
+      '모든 박스가 판매가 이상의 상품을 보장하는 럭키박스 커머스로, 한국·일본·대만 이용자를 대상으로 서비스 중입니다. 기획안과 Figma 시안을 바탕으로 사용자 웹(60+ 화면), 어드민(25+ 화면), API를 모노레포로 혼자 설계·개발했고 약 2주 반 동안 210여 개 PR로 운영까지 올렸습니다. 추첨은 결제 승인 시점에 서버가 회차별 구좌에서 뽑고, 추첨마다 이전 해시를 잇는 SHA-256 감사 로그를 남겨 매시간 대조하고 불일치가 생기면 해당 박스 판매를 자동으로 멈춥니다. 토스페이먼츠·PayPal 결제, 카카오·이메일 로그인, 4개 언어 현지화와 해외 배송, 포인트·보관함·배송·리뷰까지 커머스 전 과정을 구현했고, NestJS API를 Hono로 단계적으로 옮겨 Supabase Edge Function에 배포했습니다.',
+    descriptionEn:
+      'A lucky box commerce service where every box guarantees an item worth at least its price, serving users in Korea, Japan and Taiwan. Working from the product plan and Figma designs, I designed and built the user web (60+ screens), admin (25+ screens) and API solo as a monorepo, shipping to production in about two and a half weeks over 210+ PRs. Draws are made server-side from per-round slots at payment approval, and each draw is written to a SHA-256 hash-chained audit log that is verified hourly — any mismatch automatically halts sales of that box. Built the full commerce flow — Toss Payments and PayPal, Kakao and email sign-in, 4-language localization with overseas shipping, points, inventory, shipping and reviews — and migrated the NestJS API to Hono step by step to run on Supabase Edge Functions.',
+    scope: ['웹', '어드민', '백엔드'],
+    scopeEn: ['Web', 'Admin', 'Backend'],
+    tags: ['Next.js', 'TypeScript', 'Hono', 'Prisma', 'Supabase', 'PostgreSQL', 'TanStack Query', 'Zustand', 'Playwright'],
+    links: {
+      web: 'https://luckyboxday.com',
+    },
+    images: [
+      '/images/luckybox/luckybox_1.jpg',
+      '/images/luckybox/luckybox_2.jpg',
+    ],
+  },
+  {
     id: 'everycharge',
     title: '모두의충전',
     subtitle: 'EV 충전 및 차량구독 플랫폼',
@@ -77,6 +97,27 @@ export const projectsData: Project[] = [
       '/images/modu/modu_4.png',
       '/images/modu/modu_5.jpg',
       '/images/modu/modu_6.jpg',
+    ],
+  },
+  {
+    id: 'modutau',
+    title: '모두타유',
+    subtitle: '초소형 전기차 공유·자율주행 셔틀 앱',
+    subtitleEn: 'Micro EV Sharing & Autonomous Shuttle App',
+    description:
+      '충북혁신도시의 초소형 전기차 공유와 AI 자율주행 셔틀 실시간 위치를 제공하는 모빌리티 앱입니다(2022 충북 스마트시티 챌린지). 운영 중인 앱을 이어받아 React Native 0.81·0.88로 두 단계에 걸쳐 올리며 New Architecture와 VisionCamera 5로 전환했고, 서비스가 종료된 CodePush·Dynamic Links를 걷어내고 Android 15 타깃·edge-to-edge에 대응했습니다. 셔틀 노선이 6.8km에서 12.95km(A1·A2, 노선별 16개 정류소)로 확대되는 일정에 맞춰 자율버스 화면을 리뉴얼했습니다. 노선 선택, 정류소별 자율버스·일반버스 도착 정보, 정류소 사이 진행 비율로 차량을 표시하는 노선도, 배차 시간표를 구현했고 도착 예정 API가 없는 자율버스는 차량 좌표로 남은 정류소 수를 계산했습니다.',
+    descriptionEn:
+      'A mobility app for micro EV sharing and real-time AI autonomous shuttle tracking in Chungbuk Innovation City (2022 Chungbuk Smart City Challenge). I took over the live app and upgraded it to React Native 0.81 and then 0.88, moving to the New Architecture and VisionCamera 5, removed the discontinued CodePush and Dynamic Links, and brought it in line with Android 15 targeting and edge-to-edge. When the shuttle route expanded from 6.8 km to 12.95 km (routes A1/A2, 16 stops each), I rebuilt the autonomous bus screen on schedule: route switching, autonomous and regular bus arrivals per stop, a route diagram placing vehicles by their progress between stops, and timetables — computing stops remaining from vehicle coordinates where no arrival-time API exists.',
+    scope: ['모바일 앱'],
+    scopeEn: ['Mobile App'],
+    tags: ['React Native', 'TypeScript', 'TanStack Query', 'Zustand', 'Naver Maps', 'Firebase', 'Fastlane'],
+    links: {
+      playStore: 'https://play.google.com/store/apps/details?id=com.ScalarData.CJU.carShare&hl=ko',
+      appStore: 'https://apps.apple.com/kr/app/id6472705102',
+    },
+    images: [
+      '/images/modutau/modutau_1.jpg',
+      '/images/modutau/modutau_2.jpg',
     ],
   },
   {
